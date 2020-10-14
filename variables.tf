@@ -53,8 +53,8 @@ variable "policy" {
 
 variable "trusted_entities" {
   description = "Lambda function additional trusted entities for assuming roles (trust relationship)"
-  type = list(string)
-  default = []
+  type        = list(string)
+  default     = []
 }
 
 locals {
@@ -133,4 +133,14 @@ variable "vpc_config" {
     subnet_ids         = list(string)
   })
   default = null
+}
+
+variable "mcp_account" {
+  description = "If MCP account, set permissions boundary"
+  default     = false
+}
+
+variable "permissions_boundary" {
+  description = "If an MCP account, this is the permissions boundary ARN"
+  default     = ""
 }
