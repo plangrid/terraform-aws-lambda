@@ -13,9 +13,10 @@ data "aws_iam_policy_document" "assume_role" {
 }
 
 resource "aws_iam_role" "lambda" {
-  name               = var.function_name
-  assume_role_policy = data.aws_iam_policy_document.assume_role.json
-  tags               = var.tags
+  name                 = var.function_name
+  assume_role_policy   = data.aws_iam_policy_document.assume_role.json
+  tags                 = var.tags
+  permissions_boundary = var.mcp_account ? var.permissions_boundary : null
 }
 
 # Attach a policy for logs.
